@@ -113,21 +113,40 @@
         }
         .achievement strong { color: #fbbf24; font-size: 1.1em; }
 
+        /* Kustomisasi Tombol Kontak */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
         .contact-btn { 
-            display: inline-block; 
+            display: flex; 
+            align-items: center;
+            gap: 8px;
             background: var(--accent-color); 
             color: #fff; 
-            padding: 12px 28px; 
+            padding: 12px 24px; 
             text-decoration: none; 
             border-radius: 30px; 
             font-weight: bold; 
-            margin-top: 20px; 
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 0.9em;
         }
 
-        .contact-btn:hover { background: #0284c7; box-shadow: var(--accent-glow); transform: scale(1.05); }
+        /* Warna Khusus Facebook & Instagram */
+        .btn-email:hover { background: #0284c7; box-shadow: var(--accent-glow); transform: scale(1.05); }
+        
+        .btn-fb { background: #1877F2; }
+        .btn-fb:hover { background: #145dbf; box-shadow: 0 0 15px rgba(24, 119, 242, 0.5); transform: scale(1.05); }
+        
+        .btn-ig { background: #E1306C; }
+        .btn-ig:hover { background: #b82658; box-shadow: 0 0 15px rgba(225, 48, 108, 0.5); transform: scale(1.05); }
+
     </style>
 </head>
 <body>
@@ -190,7 +209,12 @@
         <div class="glass-card" style="text-align: center;">
             <h2>Contact</h2>
             <p>Hubungi Aku Dengan melalui Email dan Media Sosialku</p>
-            <a href="mailto:emailkamu@gmail.com" class="contact-btn">Kirim Email</a>
+            
+            <div class="contact-links">
+                <a href="mailto:emailkamu@gmail.com" class="contact-btn btn-email">📧 Email</a>
+                <a href="https://web.facebook.com/profile.php?id=100090587937047" target="_blank" rel="noopener noreferrer" class="contact-btn btn-fb">📘 Facebook</a>
+                <a href="https://www.instagram.com/afalulfaizin08?igsh=MTRpM2s0ajBvczN2NA==" target="_blank" rel="noopener noreferrer" class="contact-btn btn-ig">📸 Instagram</a>
+            </div>
         </div>
     </div>
 
