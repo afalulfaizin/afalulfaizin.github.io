@@ -5,69 +5,219 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Af'alul Faizin</title>
     <style>
-        /* CSS Sederhana biar tampilan bersih di HP/Laptop */
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; max-width: 850px; margin: auto; padding: 20px; background: #eceff1; color: #333; }
-        header { background: #1a237e; color: #fff; padding: 40px 20px; text-align: center; border-radius: 15px; margin-bottom: 20px; }
-        .section { background: #fff; padding: 25px; margin-bottom: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        h2 { color: #1a237e; border-left: 5px solid #1a237e; padding-left: 10px; margin-top: 0; }
-        .badge { background: #e8eaf6; color: #1a237e; padding: 5px 12px; border-radius: 20px; font-size: 0.9em; font-weight: bold; display: inline-block; margin: 5px; }
-        .achievement { border-left: 5px solid #ffab00; background: #fffde7; padding: 15px; border-radius: 8px; margin-top: 15px; }
-        .achievement strong { color: #d84315; }
-        ul { padding-left: 20px; }
-        li { margin-bottom: 10px; }
-        .contact-btn { display: inline-block; background: #ffab00; color: #000; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold; margin-top: 10px; }
+        /* Menggunakan Font Modern dari Google */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        /* Tema Dark Mode + Glassmorphism */
+        :root {
+            --bg-color: #0f172a; /* Biru Dongker Gelap ala Terminal Linux */
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --accent-color: #0ea5e9; /* Biru Neon terang */
+            --accent-glow: 0 0 15px rgba(14, 165, 233, 0.5);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: var(--bg-color); 
+            background-image: radial-gradient(circle at top right, #1e293b, transparent);
+            color: var(--text-main); 
+            min-height: 100vh;
+        }
+
+        .container { max-width: 900px; margin: auto; }
+
+        /* Efek Kartu Kaca (Glassmorphism) & Hover Animasi */
+        .glass-card { 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border); 
+            padding: 30px; 
+            margin-bottom: 25px; 
+            border-radius: 20px; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        }
+
+        header.glass-card {
+            text-align: center;
+            padding: 50px 20px;
+            border-bottom: 4px solid var(--accent-color);
+        }
+
+        h1 { margin: 0; font-size: 2.5em; letter-spacing: 1px; color: #fff; }
+        
+        /* Gaya Teks Animasi */
+        .typewriter-text { 
+            color: var(--accent-color); 
+            font-weight: 600; 
+            font-size: 1.2em; 
+            min-height: 30px; 
+            margin-top: 10px; 
+        }
+        .typewriter-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        h2 { 
+            color: var(--text-main); 
+            border-left: 4px solid var(--accent-color); 
+            padding-left: 15px; 
+            margin-top: 0; 
+            font-size: 1.5em;
+        }
+
+        p, li { color: var(--text-muted); }
+        strong { color: var(--text-main); }
+
+        /* Grid untuk Kotak Keahlian (Badge) */
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+
+        .badge { 
+            background: transparent; 
+            color: var(--accent-color); 
+            padding: 8px 16px; 
+            border-radius: 30px; 
+            font-size: 0.9em; 
+            font-weight: 600; 
+            border: 1px solid var(--accent-color);
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .badge:hover {
+            background: var(--accent-color);
+            color: #fff;
+            box-shadow: var(--accent-glow);
+        }
+
+        /* Kotak Khusus Prestasi */
+        .achievement { 
+            border-left: 4px solid #fbbf24; 
+            background: rgba(251, 191, 36, 0.1); 
+            padding: 20px; 
+            border-radius: 12px; 
+            margin-top: 20px; 
+        }
+        .achievement strong { color: #fbbf24; font-size: 1.1em; }
+
+        .contact-btn { 
+            display: inline-block; 
+            background: var(--accent-color); 
+            color: #fff; 
+            padding: 12px 28px; 
+            text-decoration: none; 
+            border-radius: 30px; 
+            font-weight: bold; 
+            margin-top: 20px; 
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .contact-btn:hover { background: #0284c7; box-shadow: var(--accent-glow); transform: scale(1.05); }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Af'alul Faizin</h1>
-        <p>Student of Computer & Network Engineering (TKJ)</p>
-        <p>Fokus: Network Administration | IT Support | System Maintenance</p>
-    </header>
+    <div class="container">
+        <header class="glass-card">
+            <h1>Af'alul Faizin</h1>
+            <div class="typewriter-text" id="typewriter"></div>
+            <p style="color: var(--text-muted); font-size: 0.95em; margin-top: 15px;">
+                📍 SMKN 1 Pangkajene dan Kepulauan | ⚙️ IT & Network Enthusiast
+            </p>
+        </header>
 
-    <div class="section">
-        <h2>Tentang Saya</h2>
-        <p>Saya adalah siswa SMK jurusan Teknik Komputer dan Jaringan di <strong>SMKN 1 Pangkajene dan Kepulauan</strong>. Saya berfokus pada infrastruktur jaringan dan pemeliharaan sistem perangkat keras maupun lunak, dengan disiplin tinggi dan antusiasme terhadap perkembangan teknologi industri.</p>
-    </div>
+        <div class="glass-card">
+            <h2>Tentang Saya</h2>
+            <p>Saya adalah siswa SMK jurusan <strong>Teknik Komputer dan Jaringan</strong> yang berfokus pada infrastruktur jaringan, pemeliharaan sistem perangkat keras maupun lunak, dan pengembangan teknologi berbasis web. Memiliki disiplin tinggi dalam bekerja dan antusias terhadap pemecahan masalah (problem-solving) di industri IT.</p>
+        </div>
 
-    <div class="section">
-        <h2>Pendidikan & Prestasi Akademik</h2>
-        <p>Sebagai siswa yang aktif dan fokus pada pengembangan diri, saya memiliki grafik pencapaian akademik yang terus meningkat:</p>
-        <ul>
-            <li><strong>Kelas 11:</strong> Peringkat 2 (Semester 1)</li>
-            <li><strong>Kelas 10:</strong> Peringkat 4 (Semester 1 & 2)</li>
-        </ul>
-        
-        <div class="achievement">
-            <p><strong>🏆 Juara 1 Expo Web & Coding Andalan Camp 2025</strong></p>
-            <p>Tingkat Provinsi (Pare-pare, Sulawesi Selatan)</p>
-            <small>Menunjukkan kompetensi unggul dalam pengembangan web dan pemrograman di tingkat regional.</small>
+        <div class="glass-card">
+            <h2>Pendidikan & Prestasi Akademik</h2>
+            <p>Memiliki rekam jejak akademik yang progresif dan aktif berkompetisi di luar sekolah:</p>
+            <ul>
+                <li><strong>Kelas 11:</strong> Peringkat 2 (Semester 1)</li>
+                <li><strong>Kelas 10:</strong> Peringkat 4 (Semester 1 & 2)</li>
+            </ul>
+            
+            <div class="achievement">
+                <p><strong>🏆 Juara 1 Expo Web & Coding Andalan Camp 2025</strong></p>
+                <p>Tingkat Provinsi (Pare-pare, Sulawesi Selatan)</p>
+                <p style="font-size: 0.85em; margin-bottom: 0;">Menunjukkan kompetensi unggul dalam pengembangan web dan pemrograman di tingkat regional.</p>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2>Pengalaman & Proyek</h2>
+            <ul>
+                <li><strong>Teknisi Junior (Praktek Sekolah):</strong> Melakukan konfigurasi routing statis dan dinamis pada perangkat MikroTik serta perancangan topologi jaringan LAN.</li>
+                <li><strong>Maintenance Perangkat:</strong> Berpengalaman dalam melakukan perakitan PC, instalasi Sistem Operasi (Windows/Linux), dan troubleshooting jaringan skala kecil.</li>
+                <li><strong>Persiapan Magang Industri (Kelas 12):</strong> PT. Industri Kapal Indonesia (Persero) - Berfokus pada observasi infrastruktur jaringan dan administrasi digital di lingkungan industri BUMN.</li>
+            </ul>
+        </div>
+
+        <div class="glass-card">
+            <h2>Keahlian Teknis</h2>
+            <div class="skills-grid">
+                <div class="badge">Linux Server</div>
+                <div class="badge">MikroTik Routing</div>
+                <div class="badge">Cisco Packet Tracer</div>
+                <div class="badge">Hardware Troubleshooting</div>
+                <div class="badge">Network Security</div>
+                <div class="badge">Web Development (HTML/CSS/JS)</div>
+            </div>
+        </div>
+
+        <div class="glass-card" style="text-align: center;">
+            <h2>Mari Berkolaborasi</h2>
+            <p>Tertarik untuk mendiskusikan sistem jaringan atau peluang kolaborasi di bidang IT?</p>
+            <a href="mailto:emailkamu@gmail.com" class="contact-btn">Kirim Email</a>
         </div>
     </div>
 
-    <div class="section">
-        <h2>Pengalaman & Proyek</h2>
-        <ul>
-            <li><strong>Teknisi Junior (Praktek Sekolah):</strong> Melakukan konfigurasi routing statis dan dinamis pada perangkat MikroTik serta perancangan topologi jaringan LAN.</li>
-            <li><strong>Maintenance Perangkat:</strong> Berpengalaman dalam melakukan perakitan PC, instalasi Sistem Operasi (Windows/Linux), dan troubleshooting jaringan skala kecil.</li>
-            <li><strong>Administrasi Digital:</strong> Mahir dalam penggunaan alat produktivitas kantor untuk manajemen data dan laporan teknis.</li>
-        </ul>
-    </div>
+    <script>
+        const texts = [
+            "Student of Computer & Network Engineering",
+            "Future Network Administrator",
+            "IT Support Specialist",
+            "Web Developer"
+        ];
+        let count = 0;
+        let index = 0;
+        let currentText = "";
+        let letter = "";
 
-    <div class="section">
-        <h2>Keahlian Teknis</h2>
-        <div class="badge">Linux Server</div>
-        <div class="badge">Cisco Packet Tracer</div>
-        <div class="badge">Hardware Troubleshooting</div>
-        <div class="badge">Network Security</div>
-    </div>
+        (function type() {
+            if (count === texts.length) {
+                count = 0; // Mengulang dari awal
+            }
+            currentText = texts[count];
+            letter = currentText.slice(0, ++index);
 
-    <div class="section" style="text-align: center;">
-        <h2>Hubungi Saya</h2>
-        <p>Tertarik untuk berkolaborasi atau membutuhkan bantuan teknis?</p>
-        <a href="mailto:afalulfaizinaal@gmail.com" class="contact-btn">Kirim Email</a>
-    </div>
-
+            document.getElementById("typewriter").textContent = letter;
+            
+            if (letter.length === currentText.length) {
+                count++;
+                index = 0;
+                setTimeout(type, 2000); // Jeda 2 detik sebelum mengganti kalimat
+            } else {
+                setTimeout(type, 100); // Kecepatan ngetik per huruf
+            }
+        }());
+    </script>
 </body>
 </html>
