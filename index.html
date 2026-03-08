@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Af'alul Faizin</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         /* Menggunakan Font Modern dari Google */
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
@@ -113,38 +116,46 @@
         }
         .achievement strong { color: #fbbf24; font-size: 1.1em; }
 
-        /* Kustomisasi Tombol Kontak */
+        /* LANGKAH 3: KUSTOMISASI TOMBOL KONTAK (CSS) */
         .contact-links {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .contact-btn { 
             display: flex; 
             align-items: center;
-            gap: 8px;
+            justify-content: center;
+            gap: 10px; /* Jarak antara ikon dan teks */
             background: var(--accent-color); 
             color: #fff; 
             padding: 12px 24px; 
             text-decoration: none; 
             border-radius: 30px; 
-            font-weight: bold; 
+            font-weight: 600; 
             transition: all 0.3s ease;
             text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 0.9em;
+            font-size: 0.85em;
+            min-width: 160px; /* Lebar tombol seragam */
         }
 
-        /* Warna Khusus Facebook & Instagram */
-        .btn-email:hover { background: #0284c7; box-shadow: var(--accent-glow); transform: scale(1.05); }
+        /* Mengatur ukuran ikon di dalam tombol */
+        .contact-btn i {
+            font-size: 1.2em;
+        }
+
+        /* Warna & Efek Hover Khusus Masing-masing Tombol */
+        .btn-email { background: #555; }
+        .btn-email:hover { background: #777; box-shadow: 0 0 15px rgba(255,255,255,0.2); transform: scale(1.05); }
         
-        .btn-fb { background: #1877F2; }
+        .btn-fb { background: #1877F2; } /* Biru Resmi Facebook */
         .btn-fb:hover { background: #145dbf; box-shadow: 0 0 15px rgba(24, 119, 242, 0.5); transform: scale(1.05); }
         
-        .btn-ig { background: #E1306C; }
+        .btn-ig { background: #E1306C; } /* Merah Muda Resmi Instagram */
         .btn-ig:hover { background: #b82658; box-shadow: 0 0 15px rgba(225, 48, 108, 0.5); transform: scale(1.05); }
 
     </style>
@@ -211,9 +222,15 @@
             <p>Hubungi Aku Dengan melalui Email dan Media Sosialku</p>
             
             <div class="contact-links">
-                <a href="mailto:emailkamu@gmail.com" class="contact-btn btn-email">📧 Email</a>
-                <a href="https://web.facebook.com/profile.php?id=100090587937047" target="_blank" rel="noopener noreferrer" class="contact-btn btn-fb">📘 Facebook</a>
-                <a href="https://www.instagram.com/afalulfaizin08?igsh=MTRpM2s0ajBvczN2NA==" target="_blank" rel="noopener noreferrer" class="contact-btn btn-ig">📸 Instagram</a>
+                <a href="mailto:afalulfaizinaal@gmail.com" class="contact-btn btn-email">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://web.facebook.com/profile.php?id=100090587937047" target="_blank" rel="noopener noreferrer" class="contact-btn btn-fb">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://www.instagram.com/afalulfaizin08?igsh=MTRpM2s0ajBvczN2NA==" target="_blank" rel="noopener noreferrer" class="contact-btn btn-ig">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
             </div>
         </div>
     </div>
