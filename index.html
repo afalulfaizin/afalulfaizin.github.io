@@ -116,7 +116,7 @@
         }
         .achievement strong { color: #fbbf24; font-size: 1.1em; }
 
-        /* GAYA UNTUK DROPDOWN FOTO BUKTI */
+        /* GAYA & ANIMASI UNTUK DROPDOWN FOTO BUKTI */
         details {
             margin-top: 15px;
         }
@@ -132,7 +132,8 @@
             font-size: 0.9em;
             display: inline-block;
             transition: all 0.3s ease;
-            list-style: none; /* Menghilangkan panah default di beberapa browser */
+            list-style: none; /* Menghilangkan panah default */
+            outline: none; /* Menghilangkan border biru saat diklik */
         }
         
         summary::-webkit-details-marker {
@@ -151,6 +152,24 @@
             margin-top: 15px;
             border: 2px solid rgba(255,255,255,0.1);
             display: block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        /* Ini Animasi Smooth-nya */
+        @keyframes slideDownSmooth {
+            0% {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Pemicu animasi saat kotak dibuka */
+        details[open] .proof-img {
+            animation: slideDownSmooth 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
 
         /* LANGKAH 3: KUSTOMISASI TOMBOL KONTAK (CSS) */
