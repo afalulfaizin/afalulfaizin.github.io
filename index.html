@@ -116,12 +116,10 @@
         }
         .achievement strong { color: #fbbf24; font-size: 1.1em; }
 
-        /* GAYA & ANIMASI UNTUK DROPDOWN FOTO BUKTI */
-        details {
-            margin-top: 15px;
-        }
-        
-        summary {
+        /* =========================================
+           GAYA & ANIMASI BUKA-TUTUP FOTO BUKTI 
+           ========================================= */
+        .proof-toggle {
             background-color: transparent;
             color: #fbbf24;
             border: 1px solid #fbbf24;
@@ -132,17 +130,28 @@
             font-size: 0.9em;
             display: inline-block;
             transition: all 0.3s ease;
-            list-style: none; /* Menghilangkan panah default */
-            outline: none; /* Menghilangkan border biru saat diklik */
-        }
-        
-        summary::-webkit-details-marker {
-            display: none; /* Menghilangkan panah default di Chrome/Safari */
+            margin-top: 15px;
+            font-family: 'Poppins', sans-serif;
         }
 
-        summary:hover {
+        .proof-toggle:hover {
             background-color: #fbbf24;
             color: #000;
+        }
+
+        /* Wadah foto diatur tinggi 0 dan transparan (tersembunyi) */
+        .proof-wrapper {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            /* Transisi untuk tinggi dan transparansi secara bersamaan */
+            transition: max-height 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease-in-out;
+        }
+
+        /* Saat class "show" aktif, tinggi membesar dan foto muncul jelas */
+        .proof-wrapper.show {
+            max-height: 1000px; /* Angka besar agar muat untuk foto panjang */
+            opacity: 1;
         }
 
         .proof-img {
@@ -150,29 +159,15 @@
             max-width: 500px;
             border-radius: 8px;
             margin-top: 15px;
+            margin-bottom: 5px;
             border: 2px solid rgba(255,255,255,0.1);
             display: block;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        /* Ini Animasi Smooth-nya */
-        @keyframes slideDownSmooth {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px) scale(0.98);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
+        /* ========================================= */
 
-        /* Pemicu animasi saat kotak dibuka */
-        details[open] .proof-img {
-            animation: slideDownSmooth 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-        }
-
-        /* LANGKAH 3: KUSTOMISASI TOMBOL KONTAK (CSS) */
+        /* KUSTOMISASI TOMBOL KONTAK (CSS) */
         .contact-links {
             display: flex;
             justify-content: center;
@@ -246,10 +241,12 @@
                 <span style="font-size: 0.9em; color: #fbbf24;">📅 17 - 19 Desember 2025</span></p>
                 <p style="font-size: 0.85em; margin-bottom: 0;">Menunjukkan kompetensi unggul dalam pengembangan web dan pemrograman di tingkat regional.</p>
                 
-                <details>
-                    <summary><i class="fas fa-image"></i> Lihat Bukti Kegiatan</summary>
+                <button class="proof-toggle" onclick="toggleProof()">
+                    <i class="fas fa-image"></i> Lihat Bukti Kegiatan
+                </button>
+                <div class="proof-wrapper" id="proofWrapper">
                     <img src="Penyerahan Piala.jpg" alt="Penyerahan Piala & Sertifikat" class="proof-img">
-                </details>
+                </div>
 
             </div>
         </div>
@@ -296,6 +293,7 @@
     </div>
 
     <script>
+        // Efek Ketikan (Typewriter)
         const texts = [
             "Student of Computer & Network Engineering",
             "Future Network Administrator",
@@ -319,11 +317,18 @@
             if (letter.length === currentText.length) {
                 count++;
                 index = 0;
-                setTimeout(type, 2000); // Jeda 2 detik sebelum mengganti kalimat
+                setTimeout(type, 2000); // Jeda 2 detik
             } else {
-                setTimeout(type, 100); // Kecepatan ngetik per huruf
+                setTimeout(type, 100); // Kecepatan ngetik
             }
         }());
+
+        // FUNGSI UNTUK ANIMASI BUKA/TUTUP FOTO BUKTI
+        function toggleProof() {
+            const wrapper = document.getElementById("proofWrapper");
+            // Toggle akan menambah class 'show' kalau tidak ada, dan menghapusnya kalau ada
+            wrapper.classList.toggle("show");
+        }
     </script>
 </body>
 </html>
