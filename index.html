@@ -31,6 +31,7 @@
             background-image: radial-gradient(circle at top right, #1e293b, transparent);
             color: var(--text-main); 
             min-height: 100vh;
+            overflow-x: hidden; /* Mencegah layar geser ke samping */
         }
 
         .container { max-width: 900px; margin: auto; }
@@ -60,12 +61,12 @@
 
         h1 { margin: 0; font-size: 2.5em; letter-spacing: 1px; color: #fff; }
         
-        /* Gaya Teks Animasi - DIPERBARUI AGAR TIDAK NAIK-TURUN */
+        /* Gaya Teks Animasi */
         .typewriter-text { 
             color: var(--accent-color); 
             font-weight: 600; 
             font-size: 1.2em; 
-            min-height: 60px; /* Memberi ruang paten untuk 2 baris teks */
+            min-height: 60px; 
             margin-top: 10px; 
             display: flex;
             align-items: center;
@@ -163,8 +164,21 @@
             border: 2px solid rgba(255,255,255,0.1);
             display: block;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            /* INI KODE BARU UNTUK KE TENGAH */
-            margin: 15px auto 5px auto; /* Atas: 15px, Kanan: auto, Bawah: 5px, Kiri: auto */
+            margin: 15px auto 5px auto; 
+        }
+
+        /* =========================================
+           EFEK ANIMASI SCROLL (REVEAL) 
+           ========================================= */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px); /* Posisi awal turun 50px */
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0); /* Posisi kembali ke normal (naik) */
         }
 
         /* ========================================= */
@@ -219,7 +233,7 @@
             }
             .typewriter-text {
                 font-size: 1.05em; 
-                min-height: 65px; /* Menjaga ruang agar tidak naik-turun */
+                min-height: 65px; 
             }
             .contact-btn {
                 min-width: 100%; 
@@ -241,12 +255,12 @@
             </p>
         </header>
 
-        <div class="glass-card">
+        <div class="glass-card reveal">
             <h2>Tentang Saya</h2>
             <p>Saya adalah siswa SMK jurusan <strong>Teknik Komputer dan Jaringan</strong> yang berfokus pada infrastruktur jaringan, pemeliharaan sistem perangkat keras maupun lunak, dan pengembangan teknologi berbasis web. Memiliki disiplin tinggi dalam bekerja dan antusias terhadap pemecahan masalah (problem-solving) di industri IT.</p>
         </div>
 
-        <div class="glass-card">
+        <div class="glass-card reveal">
             <h2>Pendidikan & Prestasi Akademik</h2>
             <p>Memiliki rekam jejak akademik yang progresif dan aktif berkompetisi di luar sekolah:</p>
             <ul>
@@ -270,7 +284,7 @@
             </div>
         </div>
 
-        <div class="glass-card">
+        <div class="glass-card reveal">
             <h2>Pengalaman & Proyek</h2>
             <ul>
                 <li><strong>Teknisi Junior (Praktek Sekolah):</strong> Melakukan konfigurasi routing statis dan dinamis pada perangkat MikroTik serta perancangan topologi jaringan LAN.</li>
@@ -280,7 +294,7 @@
             </ul>
         </div>
 
-        <div class="glass-card">
+        <div class="glass-card reveal">
             <h2>Keahlian Teknis</h2>
             <div class="skills-grid">
                 <div class="badge">Linux Server</div>
@@ -293,7 +307,7 @@
             </div>
         </div>
 
-        <div class="glass-card" style="text-align: center;">
+        <div class="glass-card reveal" style="text-align: center;">
             <h2>Contact</h2>
             <p>Hubungi Aku Dengan melalui Email dan Media Sosialku</p>
             
@@ -312,7 +326,7 @@
     </div>
 
     <script>
-        // Efek Ketikan (Typewriter)
+        // 1. Efek Ketikan (Typewriter)
         const texts = [
             "Student of Computer & Network Engineering",
             "Future Network Administrator",
@@ -342,11 +356,28 @@
             }
         }());
 
-        // FUNGSI UNTUK ANIMASI BUKA/TUTUP FOTO BUKTI
+        // 2. FUNGSI UNTUK ANIMASI BUKA/TUTUP FOTO BUKTI
         function toggleProof() {
             const wrapper = document.getElementById("proofWrapper");
             wrapper.classList.toggle("show");
         }
+
+        // 3. FUNGSI ANIMASI SCROLL REVEAL (INTERSECTION OBSERVER)
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                // Jika elemen masuk ke dalam layar
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1 // Animasi mulai saat 10% kotak sudah terlihat di layar
+        });
+
+        // Mencari semua elemen yang punya class 'reveal' lalu pantau mereka
+        const hiddenElements = document.querySelectorAll('.reveal');
+        hiddenElements.forEach((el) => observer.observe(el));
+        
     </script>
 </body>
 </html>
