@@ -31,7 +31,7 @@
             background-image: radial-gradient(circle at top right, #1e293b, transparent);
             color: var(--text-main); 
             min-height: 100vh;
-            overflow-x: hidden; /* Mencegah layar geser ke samping */
+            overflow-x: hidden; 
         }
 
         .container { max-width: 900px; margin: auto; }
@@ -350,9 +350,9 @@
             if (letter.length === currentText.length) {
                 count++;
                 index = 0;
-                setTimeout(type, 2000); // Jeda 2 detik
+                setTimeout(type, 2000); 
             } else {
-                setTimeout(type, 100); // Kecepatan ngetik
+                setTimeout(type, 100); 
             }
         }());
 
@@ -362,19 +362,22 @@
             wrapper.classList.toggle("show");
         }
 
-        // 3. FUNGSI ANIMASI SCROLL REVEAL (INTERSECTION OBSERVER)
+        // 3. FUNGSI ANIMASI SCROLL REVEAL (TWO-WAY / BOLAK-BALIK)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                // Jika elemen masuk ke dalam layar
+                // Jika elemen masuk ke layar, tambahkan animasi
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                } 
+                // Jika elemen keluar dari layar, hapus animasi (sembunyikan lagi)
+                else {
+                    entry.target.classList.remove('active');
                 }
             });
         }, {
-            threshold: 0.1 // Animasi mulai saat 10% kotak sudah terlihat di layar
+            threshold: 0.1 // Bereaksi ketika 10% elemen terlihat/menghilang
         });
 
-        // Mencari semua elemen yang punya class 'reveal' lalu pantau mereka
         const hiddenElements = document.querySelectorAll('.reveal');
         hiddenElements.forEach((el) => observer.observe(el));
         
