@@ -116,6 +116,43 @@
         }
         .achievement strong { color: #fbbf24; font-size: 1.1em; }
 
+        /* GAYA UNTUK DROPDOWN FOTO BUKTI */
+        details {
+            margin-top: 15px;
+        }
+        
+        summary {
+            background-color: transparent;
+            color: #fbbf24;
+            border: 1px solid #fbbf24;
+            padding: 8px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            display: inline-block;
+            transition: all 0.3s ease;
+            list-style: none; /* Menghilangkan panah default di beberapa browser */
+        }
+        
+        summary::-webkit-details-marker {
+            display: none; /* Menghilangkan panah default di Chrome/Safari */
+        }
+
+        summary:hover {
+            background-color: #fbbf24;
+            color: #000;
+        }
+
+        .proof-img {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border: 2px solid rgba(255,255,255,0.1);
+            display: block;
+        }
+
         /* LANGKAH 3: KUSTOMISASI TOMBOL KONTAK (CSS) */
         .contact-links {
             display: flex;
@@ -129,7 +166,7 @@
             display: flex; 
             align-items: center;
             justify-content: center;
-            gap: 10px; /* Jarak antara ikon dan teks */
+            gap: 10px;
             background: var(--accent-color); 
             color: #fff; 
             padding: 12px 24px; 
@@ -140,22 +177,20 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-size: 0.85em;
-            min-width: 160px; /* Lebar tombol seragam */
+            min-width: 160px; 
         }
 
-        /* Mengatur ukuran ikon di dalam tombol */
         .contact-btn i {
             font-size: 1.2em;
         }
 
-        /* Warna & Efek Hover Khusus Masing-masing Tombol */
         .btn-email { background: #555; }
         .btn-email:hover { background: #777; box-shadow: 0 0 15px rgba(255,255,255,0.2); transform: scale(1.05); }
         
-        .btn-fb { background: #1877F2; } /* Biru Resmi Facebook */
+        .btn-fb { background: #1877F2; } 
         .btn-fb:hover { background: #145dbf; box-shadow: 0 0 15px rgba(24, 119, 242, 0.5); transform: scale(1.05); }
         
-        .btn-ig { background: #E1306C; } /* Merah Muda Resmi Instagram */
+        .btn-ig { background: #E1306C; } 
         .btn-ig:hover { background: #b82658; box-shadow: 0 0 15px rgba(225, 48, 108, 0.5); transform: scale(1.05); }
 
     </style>
@@ -191,6 +226,12 @@
                 <p style="margin-bottom: 5px;">Tingkat Provinsi (Pare-pare, Sulawesi Selatan)<br>
                 <span style="font-size: 0.9em; color: #fbbf24;">📅 17 - 19 Desember 2025</span></p>
                 <p style="font-size: 0.85em; margin-bottom: 0;">Menunjukkan kompetensi unggul dalam pengembangan web dan pemrograman di tingkat regional.</p>
+                
+                <details>
+                    <summary><i class="fas fa-image"></i> Lihat Bukti Kegiatan</summary>
+                    <img src="Penyerahan Piala.jpg" alt="Penyerahan Piala & Sertifikat" class="proof-img">
+                </details>
+
             </div>
         </div>
 
