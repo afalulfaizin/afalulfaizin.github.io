@@ -60,17 +60,22 @@
 
         h1 { margin: 0; font-size: 2.5em; letter-spacing: 1px; color: #fff; }
         
-        /* Gaya Teks Animasi */
+        /* Gaya Teks Animasi - DIPERBARUI AGAR TIDAK NAIK-TURUN */
         .typewriter-text { 
             color: var(--accent-color); 
             font-weight: 600; 
             font-size: 1.2em; 
-            min-height: 30px; 
+            min-height: 60px; /* Memberi ruang paten untuk 2 baris teks */
             margin-top: 10px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+        
         .typewriter-text::after {
             content: '|';
             animation: blink 0.7s infinite;
+            margin-left: 2px;
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
@@ -139,18 +144,15 @@
             color: #000;
         }
 
-        /* Wadah foto diatur tinggi 0 dan transparan (tersembunyi) */
         .proof-wrapper {
             max-height: 0;
             overflow: hidden;
             opacity: 0;
-            /* Transisi untuk tinggi dan transparansi secara bersamaan */
             transition: max-height 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease-in-out;
         }
 
-        /* Saat class "show" aktif, tinggi membesar dan foto muncul jelas */
         .proof-wrapper.show {
-            max-height: 1000px; /* Angka besar agar muat untuk foto panjang */
+            max-height: 1000px; 
             opacity: 1;
         }
 
@@ -158,11 +160,11 @@
             width: 100%;
             max-width: 500px;
             border-radius: 8px;
-            margin-top: 15px;
-            margin-bottom: 5px;
             border: 2px solid rgba(255,255,255,0.1);
             display: block;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            /* INI KODE BARU UNTUK KE TENGAH */
+            margin: 15px auto 5px auto; /* Atas: 15px, Kanan: auto, Bawah: 5px, Kiri: auto */
         }
 
         /* ========================================= */
@@ -206,6 +208,23 @@
         
         .btn-ig { background: #E1306C; } 
         .btn-ig:hover { background: #b82658; box-shadow: 0 0 15px rgba(225, 48, 108, 0.5); transform: scale(1.05); }
+
+        /* OPTIMASI KHUSUS UNTUK LAYAR HANDPHONE */
+        @media (max-width: 600px) {
+            .glass-card {
+                padding: 20px; 
+            }
+            h1 {
+                font-size: 2em; 
+            }
+            .typewriter-text {
+                font-size: 1.05em; 
+                min-height: 65px; /* Menjaga ruang agar tidak naik-turun */
+            }
+            .contact-btn {
+                min-width: 100%; 
+            }
+        }
 
     </style>
 </head>
@@ -326,7 +345,6 @@
         // FUNGSI UNTUK ANIMASI BUKA/TUTUP FOTO BUKTI
         function toggleProof() {
             const wrapper = document.getElementById("proofWrapper");
-            // Toggle akan menambah class 'show' kalau tidak ada, dan menghapusnya kalau ada
             wrapper.classList.toggle("show");
         }
     </script>
